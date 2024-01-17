@@ -1,10 +1,10 @@
 body {
     margin: 0;
-    font-family: 'Karla', sans-serif;
-    background-color: #14141c;
-    color: white;
+    font-family: roboto;
+    background-color: #23422f;
+    color: rgb(0, 0, 0);
     text-align: center;
-    padding: 40px;
+    padding: 80px;
 }
 
 .container {
@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #1a1b26;
+    background-color: #95ca9c;
     padding: 20px;
     border-radius: 20px;
 }
