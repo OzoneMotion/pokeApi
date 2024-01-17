@@ -27,7 +27,7 @@ const fetchPokemon = async (pokemon) => {
 
 // Obtener pokemon
 document.getElementById('get-btn')
-    .addEventListener('click', async () => {
+    .addEventListener('click', async function getPoke() {    //() => {
         const text = document.getElementById('poke-name').value.toLowerCase();
         const pokemon = await fetchPokemon(text);
         localStorage.setItem('currentPokeId', pokemon.id);
@@ -37,6 +37,9 @@ document.getElementById('get-btn')
         const name = pokemon.name;
         const id = pokemon.id;
         const weight = pokemon.weight;
+        /*const name = localStorage.getItem('currentPokeName');
+        const id = localStorage.getItem('currentPokeId');
+        const weight = localStorage.getItem('currentPokeWeight');*/
         pokePrint(id, name, weight, image);
         console.log(pokemon.id, pokemon.name, pokemon.weight);
     })
@@ -53,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 })
 
 
-
+/*
 // obtener el anterior
 document.getElementById('previous-btn')
     .addEventListener('click', async () => {
@@ -71,7 +74,7 @@ document.getElementById('next-btn')
         const pokemon = await fetchPokemon(newId);
         console.log(pokemon);
     })
-
+*/
 
 
 ////////////////// POST
@@ -89,8 +92,6 @@ function pokePrint(id, name, weight, image) {
     const poke_name = document.createElement('p')
     const poke_weight = document.createElement('p')
     pokemon_image.src = image;
-
-
     poke_id.innerHTML = `Id: ${Pokemon.id}`
     poke_name.innerHTML = `Name: ${Pokemon.user_name}`;
     poke_weight.innerHTML = `Weight(lb): ${Pokemon.weight}`;
