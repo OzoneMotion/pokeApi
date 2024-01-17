@@ -30,20 +30,26 @@ document.getElementById('get-btn')
     .addEventListener('click', async () => {
         const text = document.getElementById('poke-name').value.toLowerCase();
         const pokemon = await fetchPokemon(text);
-        localStorage.setItem('currentPokeId', pokemon.name);
+        localStorage.setItem('currentPokeId', pokemon.id);
+        localStorage.setItem('currentPokeName', pokemon.name);
+        localStorage.setItem('currentPokeWeight', pokemon.weight);
         const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`
         const name = pokemon.name;
         const id = pokemon.id;
         const weight = pokemon.weight;
         pokePrint(id, name, weight, image);
-        console.log(pokemon.name);
+        console.log(pokemon.id, pokemon.name, pokemon.weight);
     })
 
 document.addEventListener('DOMContentLoaded', async () => {
     const storedId = localStorage.getItem('currentPokeId');
+    const storedName = localStorage.getItem('currentPokeName');
+    const storedWeight = localStorage.getItem('currentPokeWeight');
     const initialId = storedId ? parseInt(storedId) : 1;
-    const pokemon = await fetchPokemon(initialId);
-    console.log(pokemon.name);
+    const initialName = storedName ? parseInt(storedName) : 1;
+    const initialWeight = storedWeight ? parseInt(storedWeight) : 1;
+    const pokemon = await fetchPokemon(initialId, initialName, initialWeight);
+    console.log(pokemon.name, pokemon.id, pokemon.weight);
 })
 
 
@@ -79,15 +85,17 @@ function pokePrint(id, name, weight, image) {
     const section = document.getElementById('names')
 
     const pokemon_image = document.createElement('img')
-    const user_id = document.createElement('h3');
-    const user_name = document.createElement('p')
-    const user_weight = document.createElement('p')
+    const poke_id = document.createElement('h3');
+    const poke_name = document.createElement('p')
+    const poke_weight = document.createElement('p')
     pokemon_image.src = image;
-    user_id.innerHTML = Pokemon.id;
-    user_name.innerHTML = Pokemon.user_name;
-    user_weight.innerHTML = Pokemon.weight;
 
-    section.append(pokemon_image, user_id, user_name, user_weight)
+
+    poke_id.innerHTML = `Id: ${Pokemon.id}`
+    poke_name.innerHTML = `Name: ${Pokemon.user_name}`;
+    poke_weight.innerHTML = `Weight(lb): ${Pokemon.weight}`;
+
+    section.append(pokemon_image, poke_id, poke_name, poke_weight)
 
 }
 
